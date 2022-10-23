@@ -1,0 +1,10 @@
+[core]
+    analytics = false
+    remote = storage
+    autostage = true
+[cache]
+    dir = /home/shared/dvc-cache
+    shared = group
+    type = symlink
+['remote "storage"']
+    url = s3://awecomai-matching

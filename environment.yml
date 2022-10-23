@@ -1,0 +1,9 @@
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch::pytorch
+  - pytorch3d::pytorch3d
+  - numpy
+  - pip:
+    - -e ${TRACKER_PATH}/python/utilities
+    - -e .
