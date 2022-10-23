@@ -1,0 +1,11 @@
+md5: 72cbb6b45891917d94e460d1e0392434
+frozen: true
+deps:
+- path: registries/nba22/data/sift_models/atlas_celtics.dat
+  repo:
+    url: git@github.com:awecom/tracker
+    rev_lock: 2dda741f5c5eccc6970b3f65fa1805ec8a7686fe
+outs:
+- md5: 3a3686e92ed282b46519212292245c49
+  size: 4401680
+  path: atlas_celtics.dat
