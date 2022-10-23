@@ -40,7 +40,7 @@ add matching
 from matching.data import SiftAtlas
 import matching.utils as ut
 
-atlas =  SiftAtlas(ut.package_path()/"data/atlas_celtics.dat")
+atlas =  SiftAtlas("atlas_celtics")
 
 print(atlas.params)
 print(len(atlas.descs))

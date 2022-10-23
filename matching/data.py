@@ -1,12 +1,36 @@
 import numpy as np
 import struct
+import sh
+import logging
 
 from . import utils as ut
+
+logger = logging.getLogger(__name__)
+shlog = {
+    "_err": lambda x: logger.error(x.strip()),
+    "_out": lambda x: logger.info(x.strip()),
+    "_cwd": ut.get_posix(ut.package_path())}
+
+ATLAS_PATH = f"data/{{atlas_name}}.dat"
+
+
+def download(atlas_name):
+    atlas_path = ut.package_path()/ATLAS_PATH.format(atlas_name=atlas_name)
+    if not atlas_path.is_file():
+        logger.info(f"Downloading {atlas_name}...")
+        sh.dvc("pull",ut.get_posix(atlas_path), **shlog)
+    else:
+        logger.info(f"Got {atlas_name}. Nothing to download.")
+
 
 class SiftAtlas:
 
     # adapted from tracker/src/popsift/load_sift_atlas_from_file
-    def __init__(self, atlas_path):
+    def __init__(self, atlas_name):
+
+        download(atlas_name)
+        
+        atlas_path = ut.package_path()/ATLAS_PATH.format(atlas_name=atlas_name)
 
         with open(atlas_path, "rb") as fh:
 

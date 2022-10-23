@@ -1,10 +1,10 @@
 import logging
 
-from matching.data import SiftAtlas
+from matching.data import download, SiftAtlas
 import matching.utils as ut
 
 def test1():
-    atlas =  SiftAtlas(ut.package_path()/"data/atlas_celtics.dat")
+    atlas = SiftAtlas("atlas_celtics")
 
     logging.info("----------")
     logging.info(atlas.params)
