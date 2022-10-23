@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: matching
-Version: 0.1.0
-Summary: Approximate matching of sift features
-Author: Shaowei Lin
-Author-email: shaowei@awecom.com
-
-Given a new SIFT feature find an approximate nearest neighbor from an atlas of sift features
