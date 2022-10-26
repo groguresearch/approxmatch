@@ -11,16 +11,34 @@ shlog = {
     "_out": lambda x: logger.info(x.strip()),
     "_cwd": ut.get_posix(ut.package_path())}
 
-ATLAS_PATH = f"data/{{atlas_name}}.dat"
+DAT_PATH = f"data/{{dat_file}}.dat"
 
 
-def download(atlas_name):
-    atlas_path = ut.package_path()/ATLAS_PATH.format(atlas_name=atlas_name)
-    if not atlas_path.is_file():
-        logger.info(f"Downloading {atlas_name}...")
-        sh.dvc("pull",ut.get_posix(atlas_path), **shlog)
+def download(dat_file):
+    dat_path = ut.package_path()/DAT_PATH.format(dat_file=dat_file)
+    if not dat_path.is_file():
+        logger.info(f"Downloading {dat_file}...")
+        sh.dvc("pull",ut.get_posix(dat_path), **shlog)
     else:
-        logger.info(f"Got {atlas_name}. Nothing to download.")
+        logger.info(f"Got {dat_file}. Nothing to download.")
+
+class SiftQuery:
+
+    def __init__(self, query_name):
+
+        download(query_name)
+        
+        query_path = ut.package_path()/DAT_PATH.format(dat_file=query_name)
+
+        with open(query_path, "rb") as fh:
+
+            desc_count = struct.unpack("<L", fh.read(4))[0]
+
+            self.descs = []
+            for _ in range(desc_count):
+                self.descs.append(np.array(struct.unpack("<128f", fh.read(512))))
+
+
 
 
 class SiftAtlas:
@@ -30,7 +48,7 @@ class SiftAtlas:
 
         download(atlas_name)
         
-        atlas_path = ut.package_path()/ATLAS_PATH.format(atlas_name=atlas_name)
+        atlas_path = ut.package_path()/DAT_PATH.format(atlas_name=atlas_name)
 
         with open(atlas_path, "rb") as fh:
 
