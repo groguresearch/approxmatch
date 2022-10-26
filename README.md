@@ -37,8 +37,7 @@ add matching
 ## Usage
 
 ```Python
-from matching.data import SiftAtlas
-import matching.utils as ut
+from matching.data import SiftAtlas, SiftQuery
 
 atlas =  SiftAtlas("atlas_celtics")
 
@@ -47,8 +46,13 @@ print(len(atlas.descs))
 print(atlas.descs[0].shape)
 print(len(atlas.coords))
 print(atlas.coords[0].shape)
-```
 
+query = SiftQuery("query_500000")
+    
+logging.info(len(query.descs))
+logging.info(query.descs[0].shape)
+logging.info(query.descs[0])
+```
 
 ## Notes
 
