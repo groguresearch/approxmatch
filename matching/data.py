@@ -48,7 +48,7 @@ class SiftAtlas:
 
         download(atlas_name)
         
-        atlas_path = ut.package_path()/DAT_PATH.format(atlas_name=atlas_name)
+        atlas_path = ut.package_path()/DAT_PATH.format(dat_file=atlas_name)
 
         with open(atlas_path, "rb") as fh:
 

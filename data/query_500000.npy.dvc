@@ -1,0 +1,4 @@
+outs:
+- md5: cb82ea281076f61f3a0a276424680603
+  size: 11074688
+  path: query_500000.npy

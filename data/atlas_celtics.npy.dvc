@@ -1,0 +1,4 @@
+outs:
+- md5: 7785fc4b89c21ad267e7650007161696
+  size: 8601728
+  path: atlas_celtics.npy
