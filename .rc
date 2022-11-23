@@ -1,0 +1,21 @@
+#!/bin/bash
+
+### MATCHING ###
+
+# get zsh or bash source file
+[[ ${ZSH_VERSION-} ]] &&
+  MATCHING_PATH=$0 ||
+  MATCHING_PATH=$BASH_SOURCE
+
+# get absolute path of source file
+[[ $MATCHING_PATH =~ ^/ ]] ||
+  MATCHING_PATH=$PWD/$MATCHING_PATH
+
+# get parent directory of source file
+MATCHING_PATH=$(
+  cd "$(dirname "$MATCHING_PATH")" || return
+  pwd
+) || return
+
+export MATCHING_PATH
+#export PATH="$MATCHING_PATH/scripts${PATH:+:${PATH}}"
